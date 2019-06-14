@@ -1,9 +1,14 @@
 package ecorau.demo.service;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ecorau.demo.entities.Project;
 import ecorau.demo.entities.User;
+import ecorau.demo.repository.ProjectReponsitory;
 import ecorau.demo.repository.UserRepository;
 import ecorau.demo.service.ServiceResult.Status;
 
@@ -12,7 +17,9 @@ public class UserService {
 
 	@Autowired
 	UserRepository userRepo;
-
+	@Autowired
+	ProjectReponsitory projectreponsitory;
+	
 	public ServiceResult findAllUser() {
 		ServiceResult result = new ServiceResult();
 		result.setData(userRepo.findAll());
@@ -27,9 +34,11 @@ public class UserService {
 		return result;
 	}
 
-	public ServiceResult createUser(User user) {
+	public ServiceResult createUser(User user,int id) {
 		ServiceResult result = new ServiceResult();
-		result.setData(userRepo.save(user));
+		Project pro=projectreponsitory.findById(id).orElse(null);
+		User user1=new User(user.getRole(), user.getUsername(), user.getPassword(), new HashSet<>(Arrays.asList(pro)));
+		result.setData(userRepo.save(user1));
 		return result;
 	}
 

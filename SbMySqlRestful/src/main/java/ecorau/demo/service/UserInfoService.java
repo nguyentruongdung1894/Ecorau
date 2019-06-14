@@ -32,14 +32,6 @@ public class UserInfoService {
 		ServiceResult resul = new ServiceResult();
 		resul.setData(userinforeponsitory.save(userinfo));
 		return resul;
-		// if (userreponsitory.findById(userinfo.getUser_id()) != null) {
-		// resul.setData(userinforeponsitory.save(userinfo));
-		// return resul;
-		// } else {
-		// resul.setStatus(Status.FAILED);
-		// resul.setMessage("User-Id-Info Not Found");
-		// }
-
 	}
 
 	public ServiceResult updateUserInfo(UserInfo userinfo) {

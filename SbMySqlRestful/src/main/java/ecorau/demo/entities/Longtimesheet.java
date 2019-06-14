@@ -12,5 +12,4 @@ public class Longtimesheet {
 	private String description;
 	private Date date;
 	
-	
 }

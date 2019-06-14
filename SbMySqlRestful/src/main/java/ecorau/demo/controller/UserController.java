@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ecorau.demo.entities.User;
-import ecorau.demo.service.UserService;
 import ecorau.demo.service.ServiceResult;
+import ecorau.demo.service.UserService;
 
 @RestController
 @RequestMapping("/ecorau")
@@ -36,9 +36,9 @@ public class UserController {
 	}
 
 	/* ---------------- CREATE NEW User ------------------------ */
-	@PostMapping("/create-user")
-	public ResponseEntity<ServiceResult> create(@RequestBody User user) {
-		return new ResponseEntity<ServiceResult>(customerService.createUser(user), HttpStatus.OK);
+	@PostMapping("/create-user/{id}")
+	public ResponseEntity<ServiceResult> create(@RequestBody User user,@PathVariable int id) {
+		return new ResponseEntity<ServiceResult>(customerService.createUser(user,id), HttpStatus.OK);
 	}
 
 	/* ---------------- UPDATE User ------------------------ */

@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -12,11 +15,14 @@ import javax.persistence.Table;
 public class UserInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
 	private int user_id;
 
 	@Column(name = "job")
 	private String job;
+
+	@OneToOne
+	@PrimaryKeyJoinColumn(name = "user_id")
+	private User user;
 
 	public int getUser_id() {
 		return user_id;
@@ -34,26 +40,5 @@ public class UserInfo {
 		this.job = job;
 	}
 
-	public UserInfo(int user_id, String job) {
-		super();
-		this.user_id = user_id;
-		this.job = job;
-	}
-
-	public UserInfo() {
-		super();
-	}
-
-//	@OneToOne
-//    @JoinColumn(name = "user_id")
-//	private User user;
-//
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 
 }

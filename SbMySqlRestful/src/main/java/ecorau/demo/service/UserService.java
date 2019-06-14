@@ -21,7 +21,8 @@ public class UserService {
 
 	public ServiceResult findByIdUser(int id) {
 		ServiceResult result = new ServiceResult();
-		User user = userRepo.findById(id).orElse(null);// tra ve gia tri neu khac enpty nguoc lai thy throw NoSuchElementException
+		User user = userRepo.findById(id).orElse(null);// tra ve gia tri neu khac enpty nguoc lai thy throw
+														// NoSuchElementException
 		result.setData(user);
 		return result;
 	}

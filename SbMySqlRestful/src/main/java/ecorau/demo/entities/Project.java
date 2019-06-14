@@ -1,5 +1,6 @@
 package ecorau.demo.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "project_id")
@@ -114,6 +120,6 @@ public class Project {
 			@JoinColumn(name = "user_id") })
 	private Set<User> user;
 
-//	@OneToMany(mappedBy = "longtimesheet")
-//	private List<Longtimesheet> longtimesheet;
+	@OneToMany(mappedBy = "user")
+	private List<Longtimesheet> users;
 }

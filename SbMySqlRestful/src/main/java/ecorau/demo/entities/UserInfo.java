@@ -2,6 +2,7 @@ package ecorau.demo.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -17,7 +18,7 @@ public class UserInfo {
 	@Column(name = "job")
 	private String job;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn(name = "user_id")
 	private User user;
 
